@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Classes\Home;
+use App\Classes\Invoice;
+use App\Classes\Product;
 use App\Exceptions\RouteNotFoundException;
 use App\Router;
 
@@ -12,12 +15,13 @@ session_start();
 
 $router = new Router();
 
-$router->register('/', function () {echo "Home Page";})
-        ->register('/products', function () {echo "Products Page";})
-        ->register('/invoices', function () {echo "Invoices Page";});
+$router->register('/', [Home::class, "index"])
+        ->register('/invoices', [Invoice::class, "index"])
+        ->register('/invoices/create', [Invoice::class, "create"])
+        ->register('/products', [Product::class, "index"]);
 
 try {
-    $router->resolve($_SERVER["REQUEST_URI"]);
+    echo $router->resolve($_SERVER["REQUEST_URI"]);
 } catch (RouteNotFoundException $e) {
     echo $e->getMessage();
 }
