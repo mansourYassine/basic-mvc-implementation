@@ -17,6 +17,8 @@ $router = new Router();
 
 $router->get('/', [Home::class, "index"])
         ->get('/products', [Product::class, "index"])
+        ->get('/products/add', [Product::class, "add"])
+        ->post('/products/add/upload', [Product::class, "upload"])
         ->get('/invoices', [Invoice::class, "index"])
         ->get('/invoices/create', [Invoice::class, "create"])
         ->post('/invoices/create', [Invoice::class, "store"]);
