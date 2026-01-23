@@ -8,3 +8,9 @@ function dd($element) {
     echo "</pre>";
     die();
 }
+
+function dump($element) {
+    echo "<pre>";
+    var_dump($element);
+    echo "</pre>";
+}

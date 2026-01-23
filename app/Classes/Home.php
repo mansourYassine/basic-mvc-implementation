@@ -8,6 +8,6 @@ class Home
 {
     public function index() : string
     {
-        return "Home Page";
+        return 'Home Page';
     }
 }

@@ -15,13 +15,14 @@ session_start();
 
 $router = new Router();
 
-$router->register('/', [Home::class, "index"])
-        ->register('/invoices', [Invoice::class, "index"])
-        ->register('/invoices/create', [Invoice::class, "create"])
-        ->register('/products', [Product::class, "index"]);
+$router->get('/', [Home::class, "index"])
+        ->get('/products', [Product::class, "index"])
+        ->get('/invoices', [Invoice::class, "index"])
+        ->get('/invoices/create', [Invoice::class, "create"])
+        ->post('/invoices/create', [Invoice::class, "store"]);
 
 try {
-    echo $router->resolve($_SERVER["REQUEST_URI"]);
+    echo $router->resolve($_SERVER["REQUEST_URI"], strtolower($_SERVER["REQUEST_METHOD"]));
 } catch (RouteNotFoundException $e) {
     echo $e->getMessage();
 }
