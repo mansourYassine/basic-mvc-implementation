@@ -18,9 +18,19 @@ class ProductController
         return View::make('products/add');
     }
 
+    public function download()
+    {
+        header('Content-Type: image/jpg');
+        header('Content-Disposition: attachment; filename="product.jpg"');
+
+        readfile(STORAGE_PATH . '/product.jpg');
+    }
+
     public function upload()
     {
         $filePath = STORAGE_PATH . "product.jpg"; // this is the destination path with the future name of the file
         move_uploaded_file($_FILES["image"]["tmp_name"], $filePath);
+        header('Location: /');
+        exit;
     }
 }
