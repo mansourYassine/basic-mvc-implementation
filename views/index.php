@@ -7,6 +7,11 @@
     </head>
     <body>
         <h1>Home page</h1>
-        <p>Hello <?= $firstName ?> <?= $job ?></p>
+        <hr>
+        <?php if (! empty($invoice)): ?>
+            Invoice ID: <?= $invoice['id'] ?><br>
+            Invoice Amount: <?= $invoice['amount'] ?><br>
+            User: <?= $invoice['full_name'] ?><br>
+        <?php endif ?>
     </body>
 </html>
